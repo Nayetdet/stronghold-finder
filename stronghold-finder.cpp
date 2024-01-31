@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <locale.h>
 #include <windows.h>
 
 using namespace std;
@@ -104,8 +105,9 @@ double calculateDistanceToStronghold() {
 }
 
 int main() {
+    setlocale(LC_ALL,"");
     while (true) {
-        cout << "Approximate distance: " << calculateDistanceToStronghold() << " blocks." << '\n';
+        cout << "Distância aproximada: " << calculateDistanceToStronghold() << " blocks." << '\n';
         cout << '\n';
     }
 
