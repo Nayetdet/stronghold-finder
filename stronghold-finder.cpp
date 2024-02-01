@@ -4,7 +4,6 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
-#include <locale.h>
 #include <windows.h>
 
 using namespace std;
@@ -43,7 +42,7 @@ private:
 
     vector<string> fetchUserInput() {
         vector<string> userRawCoordinates;
-        cout << "Insira suas coordenadas apertando \"F3 + C\" na direção da Ender Eye lançada:" << '\n';
+        cout << "Enter your coordinates by pressing \"F3 + C\" in the direction of the launched Ender Eye:" << '\n';
         do {
             if (OpenClipboard(nullptr)) {
                 HANDLE hClipboardData = GetClipboardData(CF_TEXT);
@@ -57,7 +56,7 @@ private:
                             find(userRawCoordinates.begin(), userRawCoordinates.end(), regexMatches[1]) == userRawCoordinates.end()
                         ) {
                             userRawCoordinates.push_back(regexMatches[1]);
-                            cout << userRawCoordinates.size() << "º coordenada: " << regexMatches[1] << '\n';
+                            cout << userRawCoordinates.size() << "st coordinate: " << regexMatches[1] << '\n';
                         }
                         GlobalUnlock(hClipboardData);
                     }
@@ -105,9 +104,8 @@ double calculateDistanceToStronghold() {
 }
 
 int main() {
-    setlocale(LC_ALL,"");
     while (true) {
-        cout << "Distância aproximada: " << calculateDistanceToStronghold() << " blocks." << '\n';
+        cout << "Approximate distance: " << calculateDistanceToStronghold() << " blocks." << '\n';
         cout << '\n';
     }
 
