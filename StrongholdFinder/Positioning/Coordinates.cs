@@ -19,13 +19,18 @@ namespace StrongholdFinder.Positioning
 
         private void GetUserCoordinates()
         {
-            Match match;
-            ClipboardService.SetText(string.Empty);
+            var match = Match.Empty;
+            var lastClipboardText = ClipboardService.GetText();
 
             do
             {
-                string clipboardText = ClipboardService.GetText() ?? string.Empty;
-                match = CoordinatesValidator.Regex().Match(clipboardText);
+                var clipboardText = ClipboardService.GetText() ?? string.Empty;
+                if (!clipboardText.Equals(lastClipboardText))
+                {
+                    lastClipboardText = clipboardText;
+                    match = CoordinatesValidator.Regex().Match(clipboardText);
+                }
+
                 Thread.Sleep(250);
             } while (!match.Success);
 
